@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import { ChatInterface } from './components/ChatInterface';
 import { TerminalInterface } from './components/TerminalInterface';
+import { FleetDashboard } from './components/FleetDashboard';
 
 export default function App() {
   const [logs, setLogs] = useState<string[]>(['Accio AI initialized.', 'Waiting for input...']);
@@ -15,11 +16,14 @@ export default function App() {
   };
 
   return (
-    <div className="p-8 space-y-8">
-      <h1 className="text-3xl font-bold">Accio AI Sourcing Assistant</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="p-8 space-y-8 bg-gray-950 min-h-screen text-white">
+      <h1 className="text-4xl font-bold">Accio AI Sourcing Assistant</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <ChatInterface onMessage={(msg) => addLog(`User: ${msg}`)} />
-        <TerminalInterface logs={logs} />
+        <div className="space-y-8">
+          <TerminalInterface logs={logs} />
+          <FleetDashboard />
+        </div>
       </div>
     </div>
   );
